@@ -1,0 +1,31 @@
+<?php
+
+use Illuminate\Database\Migrations\Migration;
+use Illuminate\Database\Schema\Blueprint;
+use Illuminate\Support\Facades\Schema;
+
+return new class extends Migration
+{
+    public function up(): void
+    {
+        Schema::table('blocs_petroliers', function (Blueprint $table) {
+            $table->decimal('latitude', 10, 7)->nullable();
+            $table->decimal('longitude', 10, 7)->nullable();
+        });
+        Schema::table('gisements', function (Blueprint $table) {
+            $table->decimal('latitude', 10, 7)->nullable();
+            $table->decimal('longitude', 10, 7)->nullable();
+        });
+        Schema::table('puits', function (Blueprint $table) {
+            $table->decimal('latitude', 10, 7)->nullable();
+            $table->decimal('longitude', 10, 7)->nullable();
+        });
+    }
+
+    public function down(): void
+    {
+        Schema::table('blocs_petroliers', fn (Blueprint $table) => $table->dropColumn(['latitude','longitude']));
+        Schema::table('gisements', fn (Blueprint $table) => $table->dropColumn(['latitude','longitude']));
+        Schema::table('puits', fn (Blueprint $table) => $table->dropColumn(['latitude','longitude']));
+    }
+};

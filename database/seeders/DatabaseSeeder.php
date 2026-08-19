@@ -2,6 +2,7 @@
 
 namespace Database\Seeders;
 
+use App\Models\User;
 use App\Models\BlocPetrolier;
 use App\Models\Permission;
 use App\Models\Puits;
@@ -90,5 +91,15 @@ class DatabaseSeeder extends Seeder
         Puits::firstOrCreate(['nom' => 'Puits GCO-B2', 'bloc_petrolier_id' => $bloc2->id], [
             'pression' => 150.0, 'profondeur' => 2800.0, 'seuil_volume' => 500.0, 'seuil_pression' => 280.0, 'statut' => 'actif',
         ]);
+
+        User::firstOrCreate(
+          ['mail' => 'admin@petrosen.sn'],
+            [
+                'nom' => 'Admin',
+                'prenom' => 'PETROSEN',
+                'motdepasse' => 'ChangezMoi123!',
+                'role_id' => $roles['administrateur']->id,
+            ]
+        );
     }
 }
